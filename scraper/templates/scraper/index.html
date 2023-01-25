@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Fonts -->
+    <!-- Awesome Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&family=Josefin+Slab:ital,wght@0,400;0,600;1,300;1,400;1,600&family=Muli:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- End of Fonts -->
+
+    <title>Real Estate in Lombardy</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Section 1: Landing Page -->
+        <section class="section-1 center" id="section-1">
+            <div class="section-1-wrapper center">
+                <div class="intro">
+                    <h1 class="section-heading section-1-heading center">Filter the Data</h1>
+                    <form method="GET" action="{% url 'price_to_area' %}">
+                        <div class="projects-wrapper center">
+                            <div class="welcome">Price from: {{ form.price_from }} to: {{ form.price_to }}</div>
+                        </div>
+                        <div class="projects-wrapper center">
+                            <div class="welcome">Area from: {{ form.area_from }} to: {{ form.area_to }}</div>
+                        </div>
+                        <div class="projects-wrapper center">
+                            <div class="welcome">Typology:  {{ form.typology }} Condition:  {{ form.condition }}</div>
+                            
+                        </div>
+                        
+                        <div class="projects-wrapper center">
+                            <button class="welcome">Submit</button>
+                            <div class="welcome center">{{ results }} results found</div>
+                        </div>                        
+                            
+                        
+                        <!-- 
+                        <a href="#section-2" class="my-projects">
+                            <i class="fas fa-chart-bar"></i>
+                            <p>Submit</p>
+                        </a>-->
+                    </form>                          
+                </div>
+            </div>
+            
+        </section>
+        <!-- End of Section 1 -->
+
+        <!-- Navbar -->
+        <nav class="navbar center sticky">
+            <a href="#section-1" class="navbar-link">Home</a>
+            <a href="#section-2" class="navbar-link">Charts</a>
+            <a href="#section-3" class="navbar-link">Map</a>
+            <a href="#section-4" class="navbar-link">Contact</a>
+        </nav>
+        <!-- End of Navbar -->
+
+        <!-- Section 2: About Me -->
+        <section class="section-2" id="section-2">
+            <h1 class="section-heading">Average Price, €/m<sup>2</sup></h1>
+            <div class="projects-wrapper center">
+                <a href="#" class="project" target="_blank">
+                    {{ chart1|safe }}
+                </a>
+                <a href="#" class="project" target="_blank">
+                    {{ chart2|safe }}
+                </a>
+               
+            </div>
+        </section>   
+        <!-- End of Section 2 -->
+
+        <!-- Section 3: Portfolio -->
+        <section class="section-3" id="section-3">
+            <h1 class="section-heading">Map</h1>
+            {{ chart_map|safe }}
+        </section>    
+        <!-- End of Section 3 -->
+
+        <!-- Section 4: Contact -->
+        <section class="section-4" id="section-4">
+            <h1 class="section-4-heading section-heading">Contact Me</h1>
+            <form method="post" action="{% url 'price_to_area' %}" class="contact-form center">
+                {% csrf_token %}
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea placeholder="Message"></textarea>
+                <input type="submit" value="Submit" class="contact-form-btn">
+
+            </form>s
+        </section>
+        <!-- End of Section 4 -->
+
+        <!-- Section 5: Footer -->
+        <footer class="section-5 center">
+            <div class="social-media">
+                <a href="#none" class="social-media-link"><i class="fab fa-github-square"></i></a>
+                <a href="#none" class="social-media-link"><i class="fab fa-youtube"></i></a>
+                <a href="#none" class="social-media-link"><i class="fab fa-twitter-square"></i></a>
+            </div>
+            <p class="copyright">
+                Copyright &copy; Maxim Kolbasov. All Rights Reserved.
+            </p>
+        </footer>
+        <!-- End of Section 5 -->
+    </div>
+
+ 
+
+    
+</body>
+
+</html>
